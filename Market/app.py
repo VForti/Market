@@ -38,20 +38,25 @@ def create_item():
 @app.route('/create/category', methods=['POST','GET'])
 def create_category():
     errors = []
-    try:
-        if request.method == 'POST':
-            name = request.form['name']
-            image = request.files['image']
+    if request.method == 'POST':
+        name = request.form['name']
+        image = request.files['image']
 
-            category = Category(name=name, image=image)
 
-            image.save('static/img')
+        image.save('static/img')
+
+        category = Category(name=name, image=image)
+
+
+        try:
+            db.session.add(category)
+            db.session.commit()
             return redirect('/')
 
-    except:
+        except:
+            """"Помилка"""
+    else:
         return render_template('create_category.html')
 
 if __name__ == '__main__':
-    debug = True
-    app_root = os.path.dirname(os.path.abspath(__file__))
-    app.run()
+    app.run(debug=True)
