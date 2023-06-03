@@ -24,8 +24,8 @@ class Item(db.Model):
 @app.route('/')
 @app.route('/home')
 def index():
-    Category = Category.query.order_by().all()
-    return render_template('index.html')
+    categorys = Category.query.order_by(Category.name).all()
+    return render_template('index.html', data=categorys)
 
 @app.route('/about')
 def about():
@@ -38,22 +38,20 @@ def create_item():
 @app.route('/create/category', methods=['POST','GET'])
 def create_category():
     errors = []
-    
-    if request.method == 'POST':
-
-        if request.form['title'] == '':
-            errors.append("Заголовок не можу бути порожнім!")
-        if request.form['post'] == '':
-            errors.append("Текст не можу бути порожнім!")
-
-        filename = None
-        if request.files['image'].filename != '':
-            print('SPROBA', request.files['image'])
+    try:
+        if request.method == 'POST':
+            name = request.form['name']
             image = request.files['image']
-            image.save(f"{PATH_UPLOADS}{image.filename}")
 
-    else:
+            category = Category(name=name, image=image)
+
+            image.save('static/img')
+            return redirect('/')
+
+    except:
         return render_template('create_category.html')
 
 if __name__ == '__main__':
+    debug = True
+    app_root = os.path.dirname(os.path.abspath(__file__))
     app.run()
