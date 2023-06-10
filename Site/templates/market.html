@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT послуги</title>
+    <style>
+        /* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Header */
+header {
+  background-color: #222;
+  padding: 20px;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+}
+
+nav ul li {
+  margin-right: 3px;
+}
+
+nav ul li a {
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px;
+  transition: all 0.3s ease;
+}
+
+nav ul li a:hover {
+  background-color: #fff;
+  color: #222;
+}
+
+/* Hero Section */
+.hero {
+  background-image: url("static/img/background.png");
+  background-size: cover;
+  background-position: center;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+}
+
+.hero h1 {
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.hero .btn {
+  display: inline-block;
+  background-color: #fff;
+  color: #222;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.hero .btn:hover {
+  background-color: #222;
+  color: #fff;
+}
+
+/* Services Section */
+.services {
+  margin-top: 50px;
+}
+
+.services h2 {
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.service-card {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 5px;
+  text-align: center;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.service-card h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.service-card h5 {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.service-card .btn {
+  display: inline-block;
+  background-color: #222;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.service-card .btn:hover {
+  background-color: #fff;
+  color: #222;
+}
+
+/* class pls */
+.pls {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+.pls h2 {
+    font-size: 30px;
+    display: flex;
+    text-align: center;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+/* Advantages Section */
+.advantages {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.advantage-card {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 5px;
+  text-align: center;
+  margin: 10px;
+  flex-basis: calc(33.33% - 20px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.advantage-card img {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+.advantage-card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.advantage-card p {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+/* Footer */
+footer {
+  background-color: #222;
+  padding: 20px;
+  text-align: center;
+}
+
+footer p {
+  color: #fff;
+  font-size: 14px;
+}
+
+    </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/market">Home</a></li>
+        <li><a href="/">Portfolio</a></li>
+
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>IT послуги</h1>
+      <p>Надійні та інноваційні рішення для вашого бізнесу</p>
+      <a href="/" class="btn">Дізнатись більше</a>
+    </div>
+  </section>
+
+  <section class="services">
+    <h2>Наші послуги</h2>
+      {% for el in data %}
+          <div class="service-card">
+              <h3>{{ el.title }}</h3>
+              <h5>{{ el.price }} грн</h5>
+              <a href="/buy/{{ el.id }}" class="btn">Купити</a>
+          </div>
+      {% endfor %}
+  </section>
+  <div class="pls">
+      <h2>Переваги наших послуг</h2>
+  </div>
+
+  <section class="advantages">
+    <div class="advantage-card">
+      <h3>Досвідчена команда</h3>
+      <p>Наша команда складається з досвідчених професіоналів, які готові реалізувати ваші проекти</p>
+    </div>
+    <div class="advantage-card">
+      <h3>Інноваційні рішення</h3>
+      <p>Ми використовуємо передові технології та підходи для досягнення найкращих результатів</p>
+    </div>
+    <div class="advantage-card">
+      <h3>Клієнтоорієнтований підхід</h3>
+      <p>Ми прислухаємося до потреб наших клієнтів і надаємо індивідуальні рішення для їх успіху</p>
+    </div>
+    <div class="advantage-card">
+      <h3>Якість</h3>
+      <p>Висока якість коду і стандарти розробки</p>
+    </div>
+      <div class="advantage-card">
+      <h3>Гнучкі зміни</h3>
+      <p>Гнучкість у врахуванні змін та додаткових вимог</p>
+    </div>
+      <div class="advantage-card">
+      <h3>Безпека даних</h3>
+      <p>Конфіденційність і безпека даних</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2023 IT послуги. Усі права захищено.</p>
+  </footer>
+</body>
+</html>
